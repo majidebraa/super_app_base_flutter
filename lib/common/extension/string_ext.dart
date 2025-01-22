@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-extension StringExtension on String{
+extension StringExt on String{
 
 
   String formatTime(){
