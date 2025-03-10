@@ -6,8 +6,7 @@ import '../detail_view_model.dart';
 class DetailBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => GetUserDetailsUseCase(Get.find()));
-    Get.lazyPut<DetailViewModel>(() => DetailViewModel(Get.find<GetUserDetailsUseCase>())
-    );
+    Get.lazyPut(() => GetUserDetailsUseCase(Get.find()),fenix: true);
+    Get.lazyPut<DetailViewModel>(() => DetailViewModel(Get.find<GetUserDetailsUseCase>()),fenix: true);
   }
 }

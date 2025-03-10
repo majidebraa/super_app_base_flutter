@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../../navigation/navigation_command.dart';
 
 abstract class BaseViewModel extends GetxController {
-  final _navigationCommand = Rx<NavigationCommand?>(null);
+  final  _navigationCommand = Rx<NavigationCommand?>(null);
   final _snackBarMessage = Rx<String?>(null);
 
   Stream<NavigationCommand?> get navigationCommand => _navigationCommand.stream;
@@ -16,7 +16,7 @@ abstract class BaseViewModel extends GetxController {
     _navigationCommand.value = Back();
   }
 
-  void navigateAndClearStack(String route, {required dynamic arguments}) {
+  void navigateAndClearStack(String route, {dynamic arguments}) {
     _navigationCommand.value = ClearAndNavigate(route, arguments: arguments);
   }
 
@@ -26,8 +26,16 @@ abstract class BaseViewModel extends GetxController {
     Future.microtask(() => _snackBarMessage.value = null);
   }
 
+  void deleteBindingIfRegistered<T>() {
+    if (Get.isRegistered<T>()) {
+      Get.delete<T>();
+    }
+  }
+
   @override
   void onClose() {
+    print("onClose");
+
     _navigationCommand.close();
     _snackBarMessage.close();
     super.onClose();

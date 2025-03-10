@@ -1,16 +1,14 @@
-import 'package:get/get.dart';
-import '../di/home_bindings.dart';
+import 'package:go_router/go_router.dart';
 import '../home_page.dart';
 
 class HomeRoutes {
   static const String home = '/home';
 
-  static List<GetPage> getPages() {
+  static List<GoRoute> getPages() {
     return [
-      GetPage(
-        name: home,
-        page: () => HomePage(),
-        binding: HomeBindings(),
+      GoRoute(
+        path: home,
+        builder: (context, state)=>HomePage(),
       ),
     ];
   }

@@ -1,5 +1,5 @@
 
-import '../../constant/app_strings.dart';
+import '../../common/constant/app_strings.dart';
 
 class AppException implements Exception {
   final _message;

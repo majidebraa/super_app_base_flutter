@@ -5,8 +5,7 @@ import '../home_view_model.dart';
 class HomeBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => GetUsersListUseCase(Get.find()));
-    Get.lazyPut(() => HomeViewModel(Get.find<GetUsersListUseCase>())
-    );
+    Get.lazyPut(() => GetUsersListUseCase(Get.find()),fenix: true);
+    Get.lazyPut(() => HomeViewModel(Get.find<GetUsersListUseCase>()),fenix: true);
   }
 }

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:super_app_base_flutter/common/extension/context_extension.dart';
 import 'package:super_app_base_flutter/common/extension/resource_ext.dart';
 import '../../common/base/base_widget.dart';
-import '../../constant/app_colors.dart';
-import '../../constant/app_images.dart';
+import '../../common/constant/app_colors.dart';
+import '../../common/constant/app_images.dart';
 import '../../data/model/user_dao.dart';
 import 'avatar_page.dart';
 import 'detail_view_model.dart'; // Adjust import based on your project structure

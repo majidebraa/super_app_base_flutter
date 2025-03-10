@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../constant/app_colors.dart';
+import '../constant/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String? text;
-  final VoidCallback onClick;
+  final VoidCallback? onClick; // Nullable to disable button
   final double width;
   final double height;
   final double cornerRadius;
@@ -12,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final Color backgroundColor;
   final double fontSize;
   final bool isLoading;
-  final Widget Function(BuildContext) content;
+  final bool isEnabled; // New property
 
   const CustomButton({
     super.key,
@@ -21,11 +20,11 @@ class CustomButton extends StatelessWidget {
     this.width = 400,
     this.height = 55,
     this.cornerRadius = 8,
-    this.textColor = AppColors.whiteColor, // Default text color
-    this.backgroundColor = AppColors.blackColor, // Default background color
-    this.fontSize = 16,
+    this.textColor = AppColors.whiteColor,
+    this.backgroundColor = AppColors.blackColor,
+    this.fontSize = 18,
     this.isLoading = false,
-    required this.content,
+    this.isEnabled = true, // Default: enabled
   });
 
   @override
@@ -39,27 +38,28 @@ class CustomButton extends StatelessWidget {
       );
     }
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: ElevatedButton(
-        onPressed: onClick,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor, // Background color
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(cornerRadius),
+    return Opacity(
+      opacity: isEnabled ? 1.0 : 0.9, // Reduce opacity when disabled
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: ElevatedButton(
+          onPressed: isEnabled ? onClick : null, // Disable button when isEnabled is false
+          style: ElevatedButton.styleFrom(
+            backgroundColor: backgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(cornerRadius),
+            ),
+          ),
+          child: Text(
+            text ?? '',
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        child: text != null
-            ? Text(
-          text!,
-          style: TextStyle(
-            color: textColor,
-            fontSize: fontSize,
-            fontWeight: FontWeight.bold,
-          ),
-        )
-            : content(context), // Use the provided content if no text
       ),
     );
   }

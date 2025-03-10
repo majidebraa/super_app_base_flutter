@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../constant/app_colors.dart';
+
+import '../../common/constant/app_colors.dart';
 
 typedef OnRowClick = Function();
 
@@ -10,10 +11,10 @@ class RowTitleValueWidget extends StatefulWidget {
   final IconData iconData;
   final OnRowClick onRowClick;
   const RowTitleValueWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.onRowClick, required this.iconData,
-  }) : super(key: key);
+  });
 
   @override
   State<RowTitleValueWidget> createState() => _RowTitleValueWidgetState();

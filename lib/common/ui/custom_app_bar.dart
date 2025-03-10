@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import '../constant/app_colors.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showBackArrow;
   final Widget? iconButtonAppBar;
-  final List<Widget> actions;
+  final List<Widget>? actions;
+  final VoidCallback? onBackPressed; // Optional callback
 
   const CustomAppBar({
     super.key,
@@ -12,46 +14,53 @@ class CustomAppBar extends StatelessWidget {
     this.showBackArrow = false,
     this.iconButtonAppBar,
     this.actions = const [],
+    this.onBackPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          if (iconButtonAppBar != null) iconButtonAppBar!,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: AppBar(
+        surfaceTintColor: AppColors.whiteColor,
+        automaticallyImplyLeading: false,
+        leading: iconButtonAppBar,
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        actions: [
           if (showBackArrow)
             IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_forward_ios_outlined),
               onPressed: () {
-                // Handle back navigation with a debounce
-                final currentTime = DateTime.now().millisecondsSinceEpoch;
-                if (currentTime - lastBackPressTime > 1000) {
-                  lastBackPressTime = currentTime;
-                  Navigator.of(context).pop(); // Navigate back when back arrow is clicked
+                if (onBackPressed != null) {
+                  onBackPressed!();
+                } else {
+                  final currentTime = DateTime.now().millisecondsSinceEpoch;
+                  if (currentTime - lastBackPressTime > 1000) {
+                    lastBackPressTime = currentTime;
+                    Navigator.of(context).pop();
+                  }
                 }
               },
             ),
-          const SizedBox(width: 8), // Spacer
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(width: 8), // Spacer
-          ...actions, // Add action buttons
+          const SizedBox(width: 8),
+          ...?actions,
         ],
+        backgroundColor: Colors.white,
+        shadowColor: Colors.black.withValues(alpha: 0.2),
+        elevation: 5,
+        iconTheme: const IconThemeData(color: Colors.black),
+        actionsIconTheme: const IconThemeData(color: Colors.black),
       ),
-      backgroundColor: Colors.white, // Background color
-      shadowColor: Colors.black.withValues(alpha: 0.2), // Shadow color
-      elevation: 5, // Elevation for shadow
-      iconTheme: IconThemeData(color: Colors.black), // Icons color
-      actionsIconTheme: IconThemeData(color: Colors.black), // Action icons color
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-// Variable to track the last back press time
+// Variable to track the last back press time for debounce.
 int lastBackPressTime = 0;
+

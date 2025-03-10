@@ -1,5 +1,5 @@
 class AppStrings{
-  static const appName = "Flutter Arch App";
+  static const appName = "Super App Base";
   static const userProfile = "User Profile";
   static const userAvatar = "User Avatar";
   static const select = "Select:";

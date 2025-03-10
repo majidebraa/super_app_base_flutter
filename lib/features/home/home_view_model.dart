@@ -3,6 +3,7 @@ import '../../common/base/base_view_model.dart';
 import '../../data/model/user_dao.dart';
 import '../../domain/use_case/home/get_users_list_use_case.dart';
 import '../../domain/utils/resources.dart';
+import '../detail/route/detail_routes.dart';
 
 class HomeViewModel extends BaseViewModel {
   final GetUsersListUseCase getUsersListUseCase;
@@ -27,6 +28,6 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void navigateToDetailPage(String? login) {
-    navigateTo('/detail',arguments: login);
+    navigateTo(DetailRoutes.detail,arguments: login);
   }
 }

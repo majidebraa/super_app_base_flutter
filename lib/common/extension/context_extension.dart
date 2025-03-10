@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../constant/app_colors.dart';
+import '../constant/app_colors.dart';
 
 extension ContextExt on BuildContext{
 
