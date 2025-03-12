@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import '../../common/base/base_view_model.dart';
 import '../../data/model/user_dao.dart';
 import '../../domain/use_case/detail/get_user_details_use_case.dart';
-import '../../domain/use_case/home/get_users_list_use_case.dart';
 import '../../domain/utils/resources.dart';
 
 class DetailViewModel extends BaseViewModel {
