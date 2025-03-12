@@ -7,6 +7,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconButtonAppBar;
   final List<Widget>? actions;
   final VoidCallback? onBackPressed; // Optional callback
+  final Color? surfaceTintColor;
+  final Color? foregroundColor;
 
   const CustomAppBar({
     super.key,
@@ -15,6 +17,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.iconButtonAppBar,
     this.actions = const [],
     this.onBackPressed,
+    this.surfaceTintColor = AppColors.whiteColor,
+    this.foregroundColor = AppColors.blackColor
   });
 
   @override
@@ -22,7 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AppBar(
-        surfaceTintColor: AppColors.whiteColor,
+        surfaceTintColor: surfaceTintColor,
+        foregroundColor: foregroundColor,
         automaticallyImplyLeading: false,
         leading: iconButtonAppBar,
         title: Text(
