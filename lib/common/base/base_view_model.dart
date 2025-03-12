@@ -34,8 +34,6 @@ abstract class BaseViewModel extends GetxController {
 
   @override
   void onClose() {
-    print("onClose");
-
     _navigationCommand.close();
     _snackBarMessage.close();
     super.onClose();

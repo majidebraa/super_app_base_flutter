@@ -24,4 +24,10 @@ class DetailViewModel extends BaseViewModel {
       userDetails.value = Resource.error(error.toString()); // Handle errors
     });
   }
+
+  @override
+  void onClose() {
+    deleteBindingIfRegistered<GetUserDetailsUseCase>();
+    super.onClose();
+  }
 }

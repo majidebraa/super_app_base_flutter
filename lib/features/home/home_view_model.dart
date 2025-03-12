@@ -30,4 +30,10 @@ class HomeViewModel extends BaseViewModel {
   void navigateToDetailPage(String? login) {
     navigateTo(DetailRoutes.detail,arguments: login);
   }
+
+  @override
+  void onClose() {
+    deleteBindingIfRegistered<GetUsersListUseCase>();
+    super.onClose();
+  }
 }

@@ -13,10 +13,13 @@ class RemoteBindings extends Bindings {
         connectTimeout: connectionTimeOut,
         receiveTimeout: connectionTimeOut,
       ),
-    ));
+    ),
+        fenix: true
+    );
 
     Get.lazyPut<RemoteModule>(
-            () => RemoteModuleImpl(Get.find(),Get.find())
+            () => RemoteModuleImpl(Get.find(),Get.find()),
+        fenix: true
     );
-    }
+  }
 }

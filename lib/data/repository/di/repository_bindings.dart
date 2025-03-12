@@ -8,9 +8,10 @@ class RepositoryBindings extends Bindings {
   void dependencies() {
     Get.lazyPut<UserRepository>(
             () => UserRepositoryImpl(
-                Get.find(),
-                Get.find()
-            )
+            Get.find(),
+            Get.find()
+        ),
+        fenix: true
     );
   }
 }

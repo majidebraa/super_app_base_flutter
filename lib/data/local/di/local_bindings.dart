@@ -6,7 +6,7 @@ import '../local_data_source.dart';
 class LocalBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<FlutterSecureStorage>(() => FlutterSecureStorage());
-    Get.lazyPut(() => LocalDataSource(Get.find()));
+    Get.lazyPut<FlutterSecureStorage>(() => FlutterSecureStorage(),fenix: true);
+    Get.lazyPut(() => LocalDataSource(Get.find()),fenix: true);
   }
 }
