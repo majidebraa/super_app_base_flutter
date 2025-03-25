@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -85,7 +86,9 @@ class BaseWidgetState<T extends BaseViewModel> extends State<BaseWidget<T>> {
 
   @override
   void dispose() {
-    if(preventClose) return;
+
+    if(preventClose && !Platform.environment.containsKey('FLUTTER_TEST')) return;
+    _resizeTimer?.cancel();
 
     _snackSub.cancel();
     _navSub.cancel();
